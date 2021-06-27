@@ -1,3 +1,13 @@
+import {
+  FETCH_SMURF_LOADING,
+  FETCH_SMURF_SUCCESS,
+  FETCH_SMURF_FAILURE,
+  ADD_SMURF,
+  SMURF_ERROR,
+  TOGGLE_SMURF,
+} from "../actions/index";
+import { bindActionCreators } from "redux";
+
 export const initialState = {
   results: [],
   loading: false,
@@ -6,11 +16,45 @@ export const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    default:
+    case FETCH_SMURF_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_SMURF_SUCCESS:
+      return {
+        ...state,
+        results: action.payload,
+        loading: false,
+      };
+    case FETCH_SMURF_FAILURE:
       return state;
   }
 };
 
+export const initialSmurfState = {
+  name: "Poppa Smurf",
+  position: "Village Leader",
+  nickname: "Pops",
+  description:
+    "Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.",
+};
+
+export const newSmurfReducer = (state = initialSmurfState, action) => {
+  switch (action.type) {
+    case ADD_SMURF:
+      return {
+        ...state,
+        name: action.payload,
+        position: action.payload,
+        nickname: action.payload,
+        description: action.payload,
+      };
+
+    case SMURF_ERROR:
+      return state;
+  }
+};
 // export default reducer;
 
 //Task List:
