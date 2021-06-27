@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addNewSmurf } from "../actions/index";
+import { addNewSmurf, toggleSmurf, smurfError } from "../actions/index";
+// import { newSmurfReducer } from "../reducers/index";
 
 const AddForm = (props) => {
   const [state, setState] = useState({
@@ -20,9 +21,9 @@ const AddForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.addNewSmurf(state);
-    if (state.name === "" || state.position === "" || state.nickname === "") {
-      errorMessage = "Name, position and nickname fields are required.";
-    }
+    // if (state.name === "" || state.position === "" || state.nickname === "") {
+    //   errorMessage = "Name, position and nickname fields are required.";
+    // }
   };
 
   const errorMessage = "";
@@ -80,13 +81,32 @@ const AddForm = (props) => {
             Error: {errorMessage}
           </div>
         )}
-        <button type="submit">Submit Smurf</button>
+        <button conClick={() => props.addNewSmurf(state)} type="submit">
+          Submit Smurf
+        </button>
       </form>
     </section>
   );
 };
 
+// const mapState = (state) => {
+//   return {
+//     // name: state.newSmurfReducer.name,
+//     // position: state.newSmurfReducer.position,
+//     // nickname: state.newSmurfReducer.nickname,
+//     // description: state.newSmurfReducer.description,
+//     name: state.name,
+//     position: state.position,
+//     nickname: state.nickname,
+//     description: state.description,
+//   };
+// };
+
+// const mapDispatch = { addNewSmurf, toggleSmurf, smurfError };
+
 export default connect(null, { addNewSmurf })(AddForm);
+
+// export default connect(mapState, mapDispatch)(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.

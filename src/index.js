@@ -7,11 +7,12 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { reducer } from "./reducers/index";
 import thunk from "redux-thunk";
+import logger from "redux-logger";
 
 const { worker } = require("./mocks/browser");
 worker.start();
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 const rootElement = document.getElementById("root");
 

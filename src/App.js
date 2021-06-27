@@ -1,5 +1,5 @@
-// import React, { Component } from "react";
 import React, { useEffect } from "react";
+// import React from "react";
 import { connect } from "react-redux";
 import AddForm from "./components/AddForm";
 import SmurfList from "./components/SmurfList";
@@ -24,7 +24,6 @@ import "./App.css";
 // }
 
 const App = (props) => {
-  console.log(props);
 
   useEffect(() => {
     props.fetchSmurfs();
